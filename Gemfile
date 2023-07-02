@@ -76,3 +76,4 @@ end
 gem "devise"
 gem "jquery-rails"
 gem "faker"
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
