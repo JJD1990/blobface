@@ -1,17 +1,12 @@
 <div id="<%= dom_id user %>">
   <p>
-    <strong>Name:</strong>
-    <%= user.name %>
-  </p>
-
-  <p>
     <strong>Email:</strong>
     <%= user.email %>
   </p>
 
-  <p>
-    <strong>Password digest:</strong>
-    <%= user.password_digest %>
-  </p>
-
+  <% if user.profile_picture.attached? %>
+    <%= image_tag user.profile_picture %>
+  <% else %>
+    <%= image_tag "default_avatar.png" %>
+  <% end %>
 </div>
