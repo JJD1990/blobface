@@ -24,6 +24,36 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-primary" type="submit">Search</button>
       </form>
+
+      <!-- Authentication Links -->
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+              <b>
+                <%= current_user.email %>
+              </b>
+            </a>
+            <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
+              <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+                <div class="fa fa-cog"></div>
+                <b>Account settings</b>
+              <% end %>
+              <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+                <div class="fa fa-sign-out-alt"></div>
+                <b>Sign out</b>
+              <% end %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Log In', new_user_session_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </nav>
