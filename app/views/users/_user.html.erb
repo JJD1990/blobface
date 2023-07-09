@@ -1,12 +1,18 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Email:</strong>
-    <%= user.email %>
-  </p>
+<div id="<%= dom_id user %>" class="d-flex align-items-center">
+  <div class="me-3">
+    <% if user.profile_picture.attached? %>
+      <%= image_tag user.profile_picture, class: "rounded-circle", style: "width: 200px; height: 150px;" %>
+    <% else %>
+      <%= image_tag "default_avatar.png", class: "rounded-circle", style: "width: 200px; height: 150px;" %>
+    <% end %>
+  </div>
 
-  <% if user.profile_picture.attached? %>
-    <%= image_tag user.profile_picture %>
-  <% else %>
-    <%= image_tag "default_avatar.png" %>
-  <% end %>
+  <div>
+    <p class="mb-0">
+      <strong>Username:</strong> <%= user.username %>
+    </p>
+    <p>
+      <strong>Email:</strong> <%= user.email %>
+    </p>
+  </div>
 </div>
