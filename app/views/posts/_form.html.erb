@@ -1,3 +1,4 @@
+<%= turbo_frame_tag  "new post" do %>
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>
     <div style="color: red">
@@ -10,7 +11,6 @@
       </ul>
     </div>
   <% end %>
-
   <div>
     <%= form.label :content, style: "display: block" %>
     <%= form.rich_text_area :content %>
@@ -19,4 +19,5 @@
   <div>
     <%= form.submit %>
   </div>
+<% end %>
 <% end %>
