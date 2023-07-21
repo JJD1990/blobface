@@ -12,8 +12,10 @@
 
   <body>
   <%= render 'layouts/navbar'%>
+  <div class="container text-center">
    <p class="notice text-center" style="color: green"><%= notice %></p>
        <p class="alert text-center" style="color: red"><%= alert %></p>
     <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,14 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "blobface_development",
+      "group": "blobface",
+      "database": "blobface_development",
+      "username": "jackdouglas"
+    }
+  ]
+}
