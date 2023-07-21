@@ -1,24 +1,14 @@
-# README
+Plan for Blobface
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Have added:
+rich text to posts,
+active storage for images/profile pics for users
+turbo to new posts,
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+need to add:
+turbo to edit posts,
+turbo to users, new & edit.
+ability to comment on posts,
+like a post,
+add images to posts,
+only the author should be able to see the edit of a post and a user

@@ -10,35 +10,36 @@ class UsersController < ApplicationController
   def show
   end
 
-  # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
+    unless current_user == @user
+      redirect_to users_path, alert: "You can only edit your own profile"
+    end
   end
-
-  # PATCH/PUT /users/1 or /users/1.json
+  
   def update
-    respond_to do |format|
+    @user = User.find(params[:id])
+    if current_user == @user
       if @user.update(user_params)
-        if params[:user][:profile_picture].present?
-          @user.profile_picture.attach(params[:user][:profile_picture])
-        end
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
+        redirect_to @user, notice: 'User was successfully updated.'
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render :edit
       end
+    else
+      redirect_to users_path, alert: "You can only update your own profile"
     end
   end
-
-  # DELETE /users/1 or /users/1.json
+  
   def destroy
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
+    @user = User.find(params[:id])
+    if current_user == @user
+      @user.destroy
+      redirect_to users_url, notice: 'User was successfully destroyed.' 
+    else
+      redirect_to users_path, alert: "You can only delete your own profile"
     end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

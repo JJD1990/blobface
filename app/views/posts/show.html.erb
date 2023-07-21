@@ -1,8 +1,11 @@
 <%= render @post %>
 
 <div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
+  <% if @post.user == current_user %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
   <%= link_to "Back to posts", posts_path %>
-
+<% if @post.user == current_user %>
   <%= button_to "Destroy this post", @post, method: :delete %>
+  <% end %>
 </div>
