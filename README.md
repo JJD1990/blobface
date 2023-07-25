@@ -11,6 +11,6 @@ need to add:
 create admin role for 1 user.
 turbo to edit posts,
 turbo to users, new & edit.
-ability to comment on posts,
+ability to comment on posts with turbo,
 like a post,
 add images to posts,
