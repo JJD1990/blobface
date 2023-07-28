@@ -13,6 +13,9 @@
     </p>
     <p>
       <strong>Email:</strong> <%= user.email %>
+    <% if current_user.admin? %>
+       <br> <strong>Role:</strong> <%= user.role %>
+    <% end %>
     </p>
   </div>
 </div>

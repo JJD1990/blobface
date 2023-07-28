@@ -1,5 +1,8 @@
 <div class="container text-center">
   <h1>Welcome to BlobFace</h1>
+  <% if current_user.admin? %>
+  <p>You are a [<%= current_user.role.humanize %>]</p>  
+  <% end %>
   <%= render 'posts/form', post: Post.new %>
   <div id="posts">
     <% @posts.each do |post| %>
