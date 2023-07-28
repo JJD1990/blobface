@@ -9,3 +9,5 @@
   <%= button_to "Destroy this post", @post, method: :delete %>
   <% end %>
 </div>
+
+<%= render partial: 'likes', locals: {post: @post} %>
