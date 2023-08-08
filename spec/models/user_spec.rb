@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'is valid with valid attributes' do
-    user = User.new(name: 'John Doe', email: 'john@example.com', password: 'password')
+    user = User.new(username: "Jack Douglas", role: 0, email: 'john@example.com', password: 'password')
     expect(user).to be_valid
   end
 
@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'has many posts' do
-    user = User.new(name: 'John Doe', email: 'john@example.com', password: 'password')
+    user = User.new(username: 'John Doe', email: 'john@example.com', password: 'password')
     expect(user.posts).to be_empty
 
     post = Post.new(content: 'Hello, world!')
@@ -20,5 +20,12 @@ RSpec.describe User, type: :model do
 
     expect(user.posts).to include(post)
   end
+
+  it 'role is set to 0 by default' do 
+    user = User.new(username: "Jack Douglas", email: 'john@example.com', password: 'password')
+    expect(user).to have_attributes(role: "user")
+  end  
+    
+
 end
 
