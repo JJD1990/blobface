@@ -1,0 +1,6 @@
+fileignoreconfig:
+- filename: config/database.yml
+  checksum: 1c35ac7647b8d11d1f36c2db3ce0f7cd5d80c551be3b47cf91cd428df623832e
+- filename: spec/contollers/posts_controller_spec.rb
+  checksum: 27d8ea9bb07c9c849176be786a32bbbe25c72266ce435b4489d9a65dcb887707
+version: "1.0"
