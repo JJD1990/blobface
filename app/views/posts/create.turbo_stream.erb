@@ -1,4 +1,4 @@
-<%= turbo_stream.append "posts", partial: "posts/post", locals: { post: @post } %>
+<%= turbo_stream.prepend "posts", partial: "posts/post", locals: { post: @post } %>
 
 <%= turbo_stream.replace "new_post", 
     partial: "form", 
