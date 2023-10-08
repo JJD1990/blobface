@@ -60,19 +60,20 @@ class PostsController < ApplicationController
     end
   end
 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+
+  def verify_author
+    unless current_user == @post.user
+      # Redirect them somewhere else or show an error message
+      redirect_to(root_path, alert: "You're not authorized to perform this action.") and return
+    end
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
-
-
-    def verify_author
-      unless current_user == @post.user
-        # Redirect them somewhere else or show an error message
-        redirect_to(root_path, alert: "You're not authorized to perform this action.") and return
-      end
-    end
 
     # Only allow a list of trusted parameters through.
     def post_params

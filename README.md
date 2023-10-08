@@ -13,5 +13,4 @@ need to add:
 turbo to edit posts,
 turbo to users, new & edit.
 ability to comment on posts with turbo,
-add images to posts,
 write tests
