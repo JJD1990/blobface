@@ -7,6 +7,7 @@ RSpec.describe PostsController, type: :controller do
   let(:post_object) { Post.create(content: 'Hello, world!', likes_count: 0, user: user) }
 
   before do
+    user.save
     sign_in user
   end
 
@@ -19,22 +20,26 @@ RSpec.describe PostsController, type: :controller do
 
   describe "POST #create" do
     it 'creates a new post' do
+      sign_in user # Sign in the user
       post :create, params: { post: { content: post_object.content, user_id: user.id } }
       expect(response).to redirect_to(Post.last)
     end
   end
-
+  
   describe "PUT #update" do
     it 'updates a post' do
+      sign_in user # Sign in the user
       put :update, params: { id: post_object.id, post: { content: "Updated content.", user_id: user.id } }
       expect(response).to redirect_to(post_object)
     end
   end
-
+  
   describe "DELETE #destroy" do
     it 'destroys a post' do
+      sign_in user # Sign in the user
       delete :destroy, params: { id: post_object.id }
       expect(response).to redirect_to(posts_url)
     end
   end
+  
 end
