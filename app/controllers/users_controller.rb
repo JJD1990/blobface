@@ -6,6 +6,17 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def search
+    @q = User.ransack(params[:q])
+    @user = @q.result(distinct: true).first
+    if @user
+      redirect_to user_path(@user)
+    else
+      flash[:notice] = "User not found."
+      redirect_to root_path
+    end
+  end
+
   # GET /users/1 or /users/1.json
   def show
   end

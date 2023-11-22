@@ -20,10 +20,11 @@
       </ul>
       
       <!-- Search Field -->
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
-      </form>
+      <%= form_for :q, url: search_users_path, method: :get, class: "d-flex" do |f| %>
+        <%= f.search_field :username, class: "form-control me-2", placeholder: "Search", aria_label: "Search" %>
+        <%= f.submit "Search", class: "btn btn-outline-primary" %>
+      <% end %>
+
 
       <!-- Authentication Links -->
       <ul class="navbar-nav ms-auto">

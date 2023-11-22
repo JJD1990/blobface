@@ -80,3 +80,5 @@ gem "jquery-rails"
 gem "faker"
 gem "font-awesome-sass", "~> 6.4.0"
 
+
+gem "ransack", "~> 4.1"

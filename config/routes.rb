@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     resource :like, module: :posts
   end
   resources :users, only: [:show, :edit, :update, :destroy, :index]
+  get 'search_users', to: 'users#search', as: 'search_users'
 end
