@@ -20,7 +20,7 @@
       </ul>
       
       <!-- Search Field -->
-      <%= form_for @q, url: search_users_path, method: :get, class: "d-flex" do |f| %>
+      <%= form_for :q, url: search_users_path, method: :get, class: "d-flex" do |f| %>
         <%= f.search_field :username_cont, class: "form-control me-2", placeholder: "Search", aria_label: "Search" %>
         <%= f.submit "Search", class: "btn btn-outline-primary" %>
       <% end %>
