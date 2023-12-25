@@ -1,45 +1,67 @@
 require 'rails_helper'
 
-RSpec.describe PostsController, type: :controller do
-  include Devise::Test::ControllerHelpers
+def log_in(user)
+  visit new_user_session_path
+  fill_in 'Email', with: user.email
+  fill_in 'Password', with: user.password
+  click_button 'Log in'
+end
 
-  let(:user) { User.create(username: 'John Doe', email: 'john@example.com', password: 'password') }
-  let(:post_object) { Post.create(content: 'Hello, world!', likes_count: 0, user: user) }
+
+RSpec.describe "Posts", type: :system, js: true do
+  let(:user) { create(:user) } # Assuming you have a user factory
 
   before do
-    user.save
-    sign_in user
+    driven_by(:selenium_chrome_headless)
+    log_in(user)
   end
 
-  describe "GET #index" do
-    it 'should show a list of posts' do
-      get :index
-      expect(response).to be_successful
+  describe "Index page" do
+    it "shows the list of posts" do
+      visit posts_path
+      expect(page).to have_content("Posts")
+      # Additional assertions based on your posts data
     end
   end
 
-  describe "POST #create" do
-    it 'creates a new post' do
-      sign_in user # Sign in the user
-      post :create, params: { post: { content: post_object.content, user_id: user.id } }
-      expect(response).to redirect_to(Post.last)
+  describe "Creating a new post" do
+    it "allows a user to create a post and displays it" do
+      visit new_post_path
+      fill_in "Content", with: "New Post Content"
+      click_button "Create Post"
+
+      # Expectations after the post is created
+      expect(page).to have_content("Post was successfully created.")
+      expect(page).to have_content("New Post Content")
     end
   end
-  
-  describe "PUT #update" do
-    it 'updates a post' do
-      sign_in user # Sign in the user
-      put :update, params: { id: post_object.id, post: { content: "Updated content.", user_id: user.id } }
-      expect(response).to redirect_to(post_object)
+
+  describe "Editing a post" do
+    let!(:post) { create(:post, user: user) } # Assuming you have a post factory
+
+    it "allows a user to edit a post" do
+      visit edit_post_path(post)
+      fill_in "Content", with: "Updated Post Content"
+      click_button "Update Post"
+
+      # Expectations after the post is updated
+      expect(page).to have_content("Post was successfully updated.")
+      expect(page).to have_content("Updated Post Content")
     end
   end
-  
-  describe "DELETE #destroy" do
-    it 'destroys a post' do
-      sign_in user # Sign in the user
-      delete :destroy, params: { id: post_object.id }
-      expect(response).to redirect_to(posts_url)
+
+  describe "Deleting a post" do
+    let!(:post) { create(:post, user: user) }
+
+    it "allows a user to delete a post" do
+      visit posts_path
+      accept_confirm do
+        click_link "Delete", href: post_path(post)
+      end
+
+      # Expectations after the post is deleted
+      expect(page).to have_content("Post was successfully destroyed.")
+      expect(page).not_to have_content(post.content)
     end
   end
-  
 end

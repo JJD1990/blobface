@@ -2,5 +2,7 @@ fileignoreconfig:
 - filename: config/database.yml
   checksum: 1c35ac7647b8d11d1f36c2db3ce0f7cd5d80c551be3b47cf91cd428df623832e
 - filename: spec/contollers/posts_controller_spec.rb
-  checksum: 27d8ea9bb07c9c849176be786a32bbbe25c72266ce435b4489d9a65dcb887707
+  checksum: cfa55ef09d836a837853bbb12f9bb9ecfc5be5362a6fa0b9589d4a58d2bc13ad
+- filename: spec/rails_helper.rb
+  checksum: fdbe5e2f24d23ba73e2f6beec91d67a5bda88064085f0f5fa58226e864ddfb2e
 version: "1.0"

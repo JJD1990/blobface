@@ -2,6 +2,24 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
+require 'capybara/rails'
+require 'capybara/rspec'
+require 'selenium/webdriver'
+
+Capybara.register_driver :selenium_chrome_headless do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: Selenium::WebDriver::Chrome::Options.new(args: %w[headless disable-gpu]))
+end
+
+Capybara.javascript_driver = :selenium_chrome_headless
+
+def log_in(user)
+  visit new_user_session_path
+  fill_in 'Email', with: user.email
+  fill_in 'Password', with: user.password
+  click_button 'Log in'
+end
+
+
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
