@@ -1,4 +1,8 @@
 fileignoreconfig:
+- filename: app/services/weather_api.rb
+  checksum: bfc105f228c74ea4fff81c6f535a18feafd98b6550c0660a187b9e7ea24ad2dd
+- filename: config/credentials.yml.enc
+  checksum: 0f068532e782544008fae96756e74937d28156d7a9c9eeff7f3c3be980196198
 - filename: config/database.yml
   checksum: 1c35ac7647b8d11d1f36c2db3ce0f7cd5d80c551be3b47cf91cd428df623832e
 - filename: spec/contollers/posts_controller_spec.rb

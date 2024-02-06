@@ -82,3 +82,5 @@ gem "font-awesome-sass", "~> 6.4.0"
 
 
 gem "ransack", "~> 4.1"
+
+gem 'httparty'

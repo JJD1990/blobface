@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show, :edit, :update, :destroy, :index]
   get 'search_users', to: 'users#search', as: 'search_users'
+  get '/weather/:city', to: 'weather#show'
 end
